@@ -126,22 +126,33 @@ class Admin {
 				$admin_notice = '';
 				$messageLog = '';
 				$matomoUrl = $_POST[$this->plugin_name.'-url'] ?  sanitize_text_field($_POST[$this->plugin_name.'-url']) : '';
+				$matomoToken = $_POST[$this->plugin_name.'-token'] ?  sanitize_text_field($_POST[$this->plugin_name.'-token']) : '';
 				$matomoId = $_POST[$this->plugin_name.'-tracking-id'] ? (int) $_POST[$this->plugin_name.'-tracking-id'] : '';
 				
 				if (empty($matomoUrl)) {
 					$admin_notice = "error";
-					$messageLog .= 'url is empty';
+					$messageLog .= 'url is empty ';
+				
+				}
+				if (empty($matomoToken)) {
+					$admin_notice = "error";
+					$messageLog .= 'token is empty ';
 				
 				}
 				if (empty($matomoId)) {
 					$admin_notice = "error";
-					$messageLog .= 'id is empty';
+					$messageLog .= 'id is empty ';
 				}
 				if (empty($admin_notice)) {
 					if ( get_option( $this->plugin_name.'-url' ) !== false ) {
 						update_option( $this->plugin_name.'-url', $matomoUrl );
 					} else {
 						add_option( $this->plugin_name.'-url', $matomoUrl);
+					}
+					if ( get_option( $this->plugin_name.'-token' ) !== false ) {
+						update_option( $this->plugin_name.'-token', $matomoToken );
+					} else {
+						add_option( $this->plugin_name.'-token', $matomoToken);
 					}
 					if ( get_option( $this->plugin_name.'-tracking-id' ) !== false ) {
 						update_option( $this->plugin_name.'-tracking-id', $matomoId );

@@ -15,18 +15,18 @@
 	define( 'WP_USE_THEMES', false );
 	require_once($_SERVER['DOCUMENT_ROOT'].'/wp-load.php'); 
 	include_once( $_SERVER['DOCUMENT_ROOT'].'/wp-admin/includes/plugin.php' );
-	if ( is_plugin_active( 'matomo-tracker/matomo-tracker.php' ) && !empty(get_option( 'matomo-tracker-url' )) && !empty(get_option( 'matomo-tracker-tracking-id' )) ) {
+	if ( is_plugin_active( 'matomo-tracker/matomo-tracker.php' ) && !empty(get_option( 'matomo-tracker-url' )) && !empty(get_option( 'matomo-tracker-tracking-id' )) && !empty(get_option( 'matomo-tracker-token' )) ) {
 		// Edit the line below, and replace http://your-piwik-domain.example.org/piwik/
 		// with your Piwik URL ending with a slash.
 		// This URL will never be revealed to visitors or search engines.
 		if (! isset($PIWIK_URL)) {
-			$PIWIK_URL = get_option( 'matomo-tracker-url' ).'/';
+			$PIWIK_URL = trailingslashit( get_option( 'matomo-tracker-url' ) );
 		}
 
 		// Edit the line below, and replace xyz by the token_auth for the user "UserTrackingAPI"
 		// which you created when you followed instructions above.
 		if (! isset($TOKEN_AUTH)) {
-			$TOKEN_AUTH = 'b7888990e32f11b9481fe88d4e16217a';
+			$TOKEN_AUTH = get_option( 'matomo-tracker-token' );
 		}
 
 		// Maximum time, in seconds, to wait for the Piwik server to return the 1*1 GIF

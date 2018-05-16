@@ -26,8 +26,20 @@
 				</th>
 				<td>								
 					<input type="url" id="<?php echo $this->plugin_name; ?>-url" name="<?php echo $this->plugin_name; ?>-url" class="regular-text" value ="<?php echo stripslashes( get_option( $this->plugin_name.'-url' ) ); ?>" />
+					<p  id="<?php echo $this->plugin_name; ?>-url-description" class="description">Ex. : http://mytrackingdomain.com</p>	
 				</td>
-			</tr>			
+			</tr>
+			<tr valign="top">
+				<th scope="row">
+					<label for="<?php echo $this->plugin_name; ?>-token">
+						<span><?php esc_attr_e('Matomo Auth Token', $this->plugin_name); ?></span>
+					</label>
+				</th>
+				<td>								
+					<input type="text" id="<?php echo $this->plugin_name; ?>-token" name="<?php echo $this->plugin_name; ?>-token" value ="<?php echo get_option( $this->plugin_name.'-token' ); ?>" class="regular-text" />
+					<p  id="<?php echo $this->plugin_name; ?>-token-description" class="description">Ex. : a8454100y45g22r8134sf99b1a87147f - Need help finding your token ? <a href="https://matomo.org/faq/general/faq_114/">Read Matomo FAQ</a></p>	
+				</td>
+			</tr>	
 			<tr valign="top">
 				<th scope="row">
 					<label for="<?php echo $this->plugin_name; ?>-tracking-id">
@@ -36,6 +48,7 @@
 				</th>
 				<td>								
 					<input type="number" id="<?php echo $this->plugin_name; ?>-tracking-id" name="<?php echo $this->plugin_name; ?>-tracking-id" value ="<?php echo get_option( $this->plugin_name.'-tracking-id' ); ?>" class="regular-text" />
+					<p  id="<?php echo $this->plugin_name; ?>-tracking-id-description" class="description">Ex. : 46</p>	
 				</td>
 			</tr>	
 			<tr valign="top">
