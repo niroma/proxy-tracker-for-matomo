@@ -15,8 +15,8 @@ Matomo tracker adds matomo (formerly piwik) tracking code to your website while 
 
 You first need to :
 1. Have a matomo script running on a custom domain name
-1. Have a valid token (more info here : https://matomo.org/faq/general/faq_114/)
-1. Create the website you want to track in Matomo admin to retrieve your website Id
+2. Have a valid token (more info here : https://matomo.org/faq/general/faq_114/)
+3. Create the website you want to track in Matomo admin to retrieve your website Id
 
 Features :
 
