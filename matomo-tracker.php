@@ -13,7 +13,7 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Matomo Tracker
- * Plugin URI:        hhttp://wordpress.org/extend/plugins/matomo-tracker/
+ * Plugin URI:        https://wordpress.org/plugins/matomo-tracker/
  * Description:       Matomo tracker adds matomo (formerly piwik) tracking code to your website while hiding your matomo installation url
  * Version:           1.0.0
  * Author:            Niroma
