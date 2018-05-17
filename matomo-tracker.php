@@ -39,7 +39,7 @@ define( __NAMESPACE__ . '\NS', __NAMESPACE__ . '\\' );
 
 define( NS . 'PLUGIN_NAME', 'matomo-tracker' );
 
-define( NS . 'PLUGIN_VERSION', '1.0.1' );
+define( NS . 'PLUGIN_VERSION', '1.0.2' );
 
 define( NS . 'PLUGIN_NAME_DIR', plugin_dir_path( __FILE__ ) );
 
