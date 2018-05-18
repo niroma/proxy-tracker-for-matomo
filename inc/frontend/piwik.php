@@ -38,6 +38,8 @@
 		if (empty($user_agent)) {
 			$user_agent = arrayValue($_SERVER, 'HTTP_USER_AGENT', '');
 		}
+		
+		$cacheDuration = 60 * 60 * 24 * 7;
 
 		// -----------------------------
 		// DO NOT MODIFY BELOW THIS LINE
@@ -65,6 +67,11 @@
 			if (!empty($modifiedSince) && $modifiedSince > $lastModified) {
 				sendHeader(sprintf("%s 304 Not Modified", $_SERVER['SERVER_PROTOCOL']));
 			} else {
+				$ts = gmdate("D, d M Y H:i:s", time() + $cacheDuration) . " GMT";
+				sendHeader("Expires: $ts");
+				sendHeader("Pragma: cache");
+				sendHeader("Cache-Control: max-age=$cacheDuration");
+			
 				sendHeader('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 				sendHeader('Content-Type: application/javascript; charset=UTF-8');
 				

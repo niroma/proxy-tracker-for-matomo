@@ -3,7 +3,7 @@ Donate link: https://www.niroma.net/
 Tags: matomo, piwik, analytics, tracking code
 Requires at least: 3.0.1
 Tested up to: 4.9.5
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,3 +39,5 @@ Features :
 * Fix Minor issue causing google to index plugin folder
 = 1.0.2 =
 * Fix javascript error from 1.0.1
+= 1.0.3 =
+* Caching added for js tracker (avoid google pagespeed message)
