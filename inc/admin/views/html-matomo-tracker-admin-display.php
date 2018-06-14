@@ -21,7 +21,7 @@
 			<tr valign="top">
 				<th scope="row">
 					<label for="<?php echo $this->plugin_name; ?>-url">
-						<span><?php esc_attr_e('Matomo Installation Url', $this->plugin_name); ?></span>
+						<span><?php esc_attr_e('Matomo Installation Url', $this->plugin_text_domain); ?></span>
 					</label>
 				</th>
 				<td>								
@@ -43,7 +43,7 @@
 			<tr valign="top">
 				<th scope="row">
 					<label for="<?php echo $this->plugin_name; ?>-tracking-id">
-						<span><?php esc_attr_e('Matomo Tracking Id', $this->plugin_name); ?></span>
+						<span><?php esc_attr_e('Matomo Tracking Id', $this->plugin_text_domain); ?></span>
 					</label>
 				</th>
 				<td>								
@@ -53,17 +53,34 @@
 			</tr>	
 			<tr valign="top">
 				<th scope="row">
+					<label for="<?php echo $this->plugin_name; ?>-tracking-mode">
+						<span><?php esc_attr_e('Tracking Mode', $this->plugin_text_domain); ?></span>
+					</label>
+				</th>
+				<td>								
+                	<select id="<?php echo $this->plugin_name; ?>-tracking-mode" name="<?php echo $this->plugin_name; ?>-tracking-mode">
+						<option value="js"<?php if (( get_option( $this->plugin_name.'-tracking-mode' ) == 'js')  || empty(get_option( $this->plugin_name.'-tracking-mode' )) ) echo ' selected';  ?>>Javascript</option>
+						<option value="php"<?php if ( get_option( $this->plugin_name.'-tracking-mode' ) == 'php') echo ' selected';  ?>>PHP</option>
+					</select>
+					<p  id="<?php echo $this->plugin_name; ?>-tracking-id-description" class="description">
+                    	<b>Javascript</b> : <?php esc_attr_e('More accurate details, Loads an additional js script in footer', $this->plugin_text_domain); ?> <br />
+                    	<b>PHP</b> : <?php esc_attr_e('Works for all pages (php hook in head), totally invisible but less accurate', $this->plugin_text_domain); ?> 
+                    </p>	
+				</td>
+			</tr>	
+			<tr valign="top">
+				<th scope="row">
 				</th>
 				<td>
 					<input type="hidden" name="action" value="matomo_tracker_form_response">
 					<?php wp_nonce_field( $this->plugin_name.'submit-matomo-form' ); ?>
-					<input class="button button-primary" type="submit" id="<?php echo $this->plugin_name; ?>-submit" name="<?php echo $this->plugin_name; ?>-submit" value="<?php esc_attr_e('Save Settings', $this->plugin_name); ?>"/>
+					<input class="button button-primary" type="submit" id="<?php echo $this->plugin_name; ?>-submit" name="<?php echo $this->plugin_name; ?>-submit" value="<?php esc_attr_e('Save Settings', $this->plugin_text_domain); ?>"/>
 				</td>
 			</tr>
 		</table>
     </form>
 </div>
 <?php } else { ?>
-	<p><?php __("You are not authorized to perform this operation.", $this->plugin_name); ?></p>
+	<p><?php __("You are not authorized to perform this operation.", $this->plugin_text_domain); ?></p>
 <?php  } ?>
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->

@@ -128,6 +128,7 @@ class Admin {
 				$matomoUrl = $_POST[$this->plugin_name.'-url'] ?  sanitize_text_field($_POST[$this->plugin_name.'-url']) : '';
 				$matomoToken = $_POST[$this->plugin_name.'-token'] ?  sanitize_text_field($_POST[$this->plugin_name.'-token']) : '';
 				$matomoId = $_POST[$this->plugin_name.'-tracking-id'] ? (int) $_POST[$this->plugin_name.'-tracking-id'] : '';
+				$matomoMode = $_POST[$this->plugin_name.'-tracking-mode'] ? $_POST[$this->plugin_name.'-tracking-mode'] : '';
 				
 				if (empty($matomoUrl)) {
 					$admin_notice = "error";
@@ -142,6 +143,10 @@ class Admin {
 				if (empty($matomoId)) {
 					$admin_notice = "error";
 					$messageLog .= 'id is empty ';
+				}
+				if (empty($matomoMode)) {
+					$admin_notice = "error";
+					$messageLog .= 'mode is empty ';
 				}
 				if (empty($admin_notice)) {
 					if ( get_option( $this->plugin_name.'-url' ) !== false ) {
@@ -158,7 +163,12 @@ class Admin {
 						update_option( $this->plugin_name.'-tracking-id', $matomoId );
 					} else {
 						add_option( $this->plugin_name.'-tracking-id', $matomoId);
-					}				
+					}	
+					if ( get_option( $this->plugin_name.'-tracking-mode' ) !== false ) {
+						update_option( $this->plugin_name.'-tracking-mode', $matomoMode );
+					} else {
+						add_option( $this->plugin_name.'-tracking-mode', $matomoMode);
+					}			
 					$admin_notice = "success";
 					$messageLog .= 'Settings saved';
 				}

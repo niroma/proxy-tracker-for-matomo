@@ -1,9 +1,11 @@
 === Matomo Tracker ===
+Contributors: nir0ma
 Donate link: https://www.niroma.net/
 Tags: matomo, piwik, analytics, tracking code
 Requires at least: 3.0.1
-Tested up to: 4.9.5
-Stable tag: 1.0.3
+Tested up to: 4.9.6
+Requires PHP: 5.6.0
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -11,12 +13,14 @@ Matomo tracker adds matomo (formerly piwik) tracking code to your website while 
 
 == Description ==
 
-Matomo tracker adds matomo (formerly piwik) tracking code to your website while hiding your matomo installation url.
+Matomo tracker adds matomo (formerly piwik) tracking code to your website while hiding your matomo installation url. You can choose between php and javascript tracking.
+Javascript tracking returns more details about your visitors while php tracking is more robust.
 
 You first need to :
-1. Have a matomo script running on a custom domain name
-2. Have a valid token (more info here : https://matomo.org/faq/general/faq_114/)
-3. Create the website you want to track in Matomo admin to retrieve your website Id
+
+* Have a matomo script running on a custom domain name
+* Have a valid token (more info here : https://matomo.org/faq/general/faq_114/)
+* Create the website you want to track in Matomo admin to retrieve your website Id
 
 Features :
 
@@ -26,18 +30,28 @@ Features :
 
 == Installation ==
 
-1. Upload `matomo-tracker` to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Visit Settings >> Matomo Tracker to add you matomo url and id 
-4. Check your matomo installation to track your pageviews
+* Upload `matomo-tracker` to the `/wp-content/plugins/` directory
+* Activate the plugin through the 'Plugins' menu in WordPress
+* Visit Settings >> Matomo Tracker to add you matomo url and id 
+* Check your matomo installation to track your pageviews
+
+== Screenshot ==
+
+1. Matomo Tracker admin page
 
 == Changelog ==
 
 = 1.0.0 =
 * Working like a charm :)
+
 = 1.0.1 =
 * Fix Minor issue causing google to index plugin folder
+
 = 1.0.2 =
 * Fix javascript error from 1.0.1
+
 = 1.0.3 =
 * Caching added for js tracker (avoid google pagespeed message)
+
+= 1.1.0 =
+* Tracking Mode selection added : You can now choose between Javscript or Php tracking Mode

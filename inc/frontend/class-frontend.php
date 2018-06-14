@@ -1,6 +1,7 @@
 <?php
 
 namespace Matomo_Tracker\Inc\Frontend;
+use PiwikTracker as PiwikTracker;
 
 /**
  * The public-facing functionality of the plugin.
@@ -109,6 +110,20 @@ class Frontend {
 			$piwikId = get_option( $this->plugin_name.'-tracking-id' );
 			$piwikFileDir = plugin_dir_url( __FILE__ );
 			echo '<script type="text/javascript">var _paq = _paq || []; _paq.push(["trackPageView"]); _paq.push(["enableLinkTracking"]); (function() { var u="'. $piwikFileDir .'piwik.php"; _paq.push(["setTrackerUrl", u]); _paq.push(["setSiteId", "'. $piwikId .'"]);  var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript"; g.async=true; g.defer=true; g.src=u; s.parentNode.insertBefore(g,s); })();</script>';
+		}
+	}
+	
+	public function add_php_tracking() {
+		if ( !empty(get_option( $this->plugin_name.'-url' )) && !empty(get_option( $this->plugin_name.'-tracking-id' )) && !empty(get_option( $this->plugin_name.'-token' )) ) {
+			$piwikurl = untrailingslashit( get_option( $this->plugin_name.'-url' ) );
+			$piwikid = get_option( $this->plugin_name.'-tracking-id' );
+			$token = get_option( $this->plugin_name.'-token' );
+			
+			if (!class_exists('PiwikTracker')) require( plugin_dir_path( __FILE__ ).'PiwikTracker.php');
+			PiwikTracker::$URL=$piwikurl;
+			$tracker = new PiwikTracker($piwikid);
+			$tracker->setTokenAuth($token);
+			$tracker->doTrackPageView(wp_title('', false));
 		}
 	}
 

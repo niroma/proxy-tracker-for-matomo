@@ -140,10 +140,11 @@ class Init {
 
 		//$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		//$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-		
-		$this->loader->add_action( 'wp_footer', $plugin_public, 'add_tracking_code_footer' );
-		
-		
+		if ( !empty(get_option( $this->plugin_name.'-tracking-mode' )) && get_option( $this->plugin_name.'-tracking-mode') == 'php' ) {
+			$this->loader->add_action('wp_head', $plugin_public, 'add_php_tracking');
+		} else {
+			$this->loader->add_action( 'wp_footer', $plugin_public, 'add_tracking_code_footer' );
+		}
 
 	}
 
