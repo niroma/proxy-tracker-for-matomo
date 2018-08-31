@@ -107,10 +107,21 @@ class Frontend {
 	*/
 	public function add_tracking_code_footer() {
 		if ( !empty(get_option( $this->plugin_name.'-url' )) && !empty(get_option( $this->plugin_name.'-tracking-id' )) && !empty(get_option( $this->plugin_name.'-token' )) ) {
-			$piwikId = get_option( $this->plugin_name.'-tracking-id' );
 			$piwikFileDir = plugin_dir_url( __FILE__ );
-			echo '<script type="text/javascript">var _paq = _paq || []; _paq.push(["trackPageView"]); _paq.push(["enableLinkTracking"]); (function() { var u="'. $piwikFileDir .'piwik.php"; _paq.push(["setTrackerUrl", u]); _paq.push(["setSiteId", "'. $piwikId .'"]);  var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript"; g.async=true; g.defer=true; g.src=u; s.parentNode.insertBefore(g,s); })();</script>';
+			$matomoJsMode = get_option( $this->plugin_name.'-javascript-mode' );
+			$matomoScript = "<script type='text/javascript'";
+			if ($matomoJsMode == 'defer') $matomoScript .= " defer='defer'";
+			if ($matomoJsMode == 'async') $matomoScript .= " async='async'";
+			$matomoScript .= " src='".$piwikFileDir."track.js'></script>";
+			echo $matomoScript;
 		}
+	}
+	
+	public function disallow_javascript_tracking( $output, $public ) {
+		if ( '1' === $public ) {
+			$output .= "Disallow: /wp-content/plugins/matomo-tracker/inc/frontend/track.js\n";
+		}
+			return $output;
 	}
 	
 	public function add_php_tracking() {

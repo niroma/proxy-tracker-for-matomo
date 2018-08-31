@@ -15,7 +15,7 @@
  * Plugin Name:       Matomo Tracker
  * Plugin URI:        https://wordpress.org/plugins/matomo-tracker/
  * Description:       Matomo tracker adds matomo (formerly piwik) tracking code to your website while hiding your matomo installation url
- * Version:           1.1.0
+ * Version:           1.2.0
  * Author:            Niroma
  * Author URI:        https://www.niroma.net/
  * License:           GPL-2.0+
@@ -39,7 +39,7 @@ define( __NAMESPACE__ . '\NS', __NAMESPACE__ . '\\' );
 
 define( NS . 'PLUGIN_NAME', 'matomo-tracker' );
 
-define( NS . 'PLUGIN_VERSION', '1.1.0' );
+define( NS . 'PLUGIN_VERSION', '1.2.0' );
 
 define( NS . 'PLUGIN_NAME_DIR', plugin_dir_path( __FILE__ ) );
 

@@ -3,9 +3,9 @@ Contributors: nir0ma
 Donate link: https://www.niroma.net/
 Tags: matomo, piwik, analytics, tracking code
 Requires at least: 3.0.1
-Tested up to: 4.9.6
+Tested up to: 4.9.8
 Requires PHP: 5.6.0
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,3 +55,8 @@ Features :
 
 = 1.1.0 =
 * Tracking Mode selection added : You can now choose between Javscript or Php tracking Mode
+
+= 1.2.0 =
+* JS Tracking Mode is no more including inline javascript and now calls a JS File 
+* JS Tracking file loading mode is now customizable (defer, async or nothing)
+* JS Tracking file can be disallowed in robots.txt

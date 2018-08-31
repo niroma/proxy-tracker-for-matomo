@@ -68,6 +68,36 @@
                     </p>	
 				</td>
 			</tr>	
+			<tr id="matomoJsMode" valign="top">
+				<th scope="row">
+					<label for="<?php echo $this->plugin_name; ?>-javascript-mode">
+						<span><?php esc_attr_e('Javascript Loading Mode', $this->plugin_text_domain); ?></span>
+					</label>
+				</th>
+				<td>								
+                	<select id="<?php echo $this->plugin_name; ?>-javascript-mode" name="<?php echo $this->plugin_name; ?>-javascript-mode">
+						<option value="defer"<?php if (( get_option( $this->plugin_name.'-javascript-mode' ) == 'defer')  || empty(get_option( $this->plugin_name.'-javascript-mode' )) ) echo ' selected';  ?>>defer</option>
+						<option value="async"<?php if ( get_option( $this->plugin_name.'-javascript-mode' ) == 'async') echo ' selected';  ?>>async</option>
+						<option value="none"<?php if ( get_option( $this->plugin_name.'-javascript-mode' ) == 'none') echo ' selected';  ?>>none</option>
+					</select>
+				</td>
+			</tr>	
+			<tr id="matomoJsDisallowRobot" valign="top">
+				<th scope="row">
+					<label for="<?php echo $this->plugin_name; ?>-javascript-disallow-robot">
+						<span><?php esc_attr_e('Disallow JS File in robot.txt', $this->plugin_text_domain); ?></span>
+					</label>
+				</th>
+				<td>								
+                	<select id="<?php echo $this->plugin_name; ?>-javascript-disallow-robot" name="<?php echo $this->plugin_name; ?>-javascript-disallow-robot">
+						<option value="y"<?php if (( get_option( $this->plugin_name.'-javascript-disallow-robot' ) == 'y')  || empty(get_option( $this->plugin_name.'-javascript-disallow-robot' )) ) echo ' selected';  ?>>Yes</option>
+						<option value="n"<?php if ( get_option( $this->plugin_name.'-javascript-disallow-robot' ) == 'n') echo ' selected';  ?>>No</option>
+					</select>
+					<p  id="<?php echo $this->plugin_name; ?>-javascript-disallow-robot-description" class="description">
+                    	<?php esc_attr_e('If activated this option will disallow js file in robot.txt', $this->plugin_text_domain); ?>
+                    </p>	
+				</td>
+			</tr>	
 			<tr valign="top">
 				<th scope="row">
 				</th>

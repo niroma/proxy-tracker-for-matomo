@@ -41,6 +41,9 @@ class Admin {
 	 * @var      string    $plugin_text_domain    The text domain of this plugin.
 	 */
 	private $plugin_text_domain;
+	
+	private $plugin_name_dir;
+	private $plugin_name_url;
 
 	/**
 	 * Initialize the class and set its properties.
@@ -50,11 +53,14 @@ class Admin {
 	 * @param       string $version            The version of this plugin.
 	 * @param       string $plugin_text_domain The text domain of this plugin.
 	 */
-	public function __construct( $plugin_name, $version, $plugin_text_domain ) {
+	public function __construct( $plugin_name, $version, $plugin_text_domain, $plugin_name_dir, $plugin_name_url ) {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 		$this->plugin_text_domain = $plugin_text_domain;
+		
+		$this->plugin_name_dir = $plugin_name_dir;
+		$this->plugin_name_url = $plugin_name_url;
 
 	}
 
@@ -86,7 +92,7 @@ class Admin {
 	 *
 	 * @since    1.0.0
 	 */
-/*	public function enqueue_scripts() {
+	public function enqueue_scripts() {
 		/*
 		 * This function is provided for demonstration purposes only.
 		 *
@@ -98,11 +104,11 @@ class Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-/*
+
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/matomo-tracker-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
-	*/
+
 	public function display_plugin_setup_page() {
 		include_once( 'views/html-matomo-tracker-admin-display.php' );
 	}
@@ -129,6 +135,8 @@ class Admin {
 				$matomoToken = $_POST[$this->plugin_name.'-token'] ?  sanitize_text_field($_POST[$this->plugin_name.'-token']) : '';
 				$matomoId = $_POST[$this->plugin_name.'-tracking-id'] ? (int) $_POST[$this->plugin_name.'-tracking-id'] : '';
 				$matomoMode = $_POST[$this->plugin_name.'-tracking-mode'] ? $_POST[$this->plugin_name.'-tracking-mode'] : '';
+				$matomoJsMode = $_POST[$this->plugin_name.'-javascript-mode'] ? $_POST[$this->plugin_name.'-javascript-mode'] : 'defer';
+				$matomoDisallowRobot = $_POST[$this->plugin_name.'-javascript-disallow-robot'] ? $_POST[$this->plugin_name.'-javascript-disallow-robot'] : 'y';
 				
 				if (empty($matomoUrl)) {
 					$admin_notice = "error";
@@ -168,12 +176,21 @@ class Admin {
 						update_option( $this->plugin_name.'-tracking-mode', $matomoMode );
 					} else {
 						add_option( $this->plugin_name.'-tracking-mode', $matomoMode);
-					}			
+					}	
+					if ( get_option( $this->plugin_name.'-javascript-mode' ) !== false ) {
+						update_option( $this->plugin_name.'-javascript-mode', $matomoJsMode );
+					} else {
+						add_option( $this->plugin_name.'-javascript-mode', $matomoJsMode);
+					}		
+					if ( get_option( $this->plugin_name.'-javascript-disallow-robot' ) !== false ) {
+						update_option( $this->plugin_name.'-javascript-disallow-robot', $matomoDisallowRobot );
+					} else {
+						add_option( $this->plugin_name.'-javascript-disallow-robot', $matomoDisallowRobot);
+					}		
 					$admin_notice = "success";
 					$messageLog .= 'Settings saved';
 				}
-				
-				
+				if ( $matomoMode == 'js' ) $this->update_tracker_settings();
 				$this->custom_redirect( $admin_notice, $messageLog);
 				die();
 			}  else {
@@ -182,6 +199,18 @@ class Admin {
 						'back_link' => 'options-general.php?page=' . $this->plugin_name,
 				) );
 			}
+	}
+	
+	private function update_tracker_settings() {
+		if ( get_option( $this->plugin_name.'-tracking-mode' ) == 'js' &&!empty(get_option( $this->plugin_name.'-url' )) && !empty(get_option( $this->plugin_name.'-tracking-id' )) && !empty(get_option( $this->plugin_name.'-token' )) ) {
+			$piwikId = get_option( $this->plugin_name.'-tracking-id' );
+			
+			$piwikFileDir = $this->plugin_name_url . 'inc/frontend/';
+			$piwikJsFile = $this->plugin_name_dir . 'inc/frontend/track.js';
+			$js = 'var _paq = _paq || []; _paq.push(["trackPageView"]); _paq.push(["enableLinkTracking"]); (function() { var u="'. $piwikFileDir .'piwik.php"; _paq.push(["setTrackerUrl", u]); _paq.push(["setSiteId", "'. $piwikId .'"]);  var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript"; g.async=true; g.defer=true; g.src=u; s.parentNode.insertBefore(g,s); })();';
+			file_put_contents($piwikJsFile, $js);
+		}
+		
 	}
 	
 	public function custom_redirect( $admin_notice, $response ) {
