@@ -190,7 +190,7 @@ class Admin {
 					$admin_notice = "success";
 					$messageLog .= 'Settings saved';
 				}
-				if ( $matomoMode == 'js' ) $this->update_tracker_settings();
+				/*$this->update_tracker_settings();*/
 				$this->custom_redirect( $admin_notice, $messageLog);
 				die();
 			}  else {
@@ -200,19 +200,31 @@ class Admin {
 				) );
 			}
 	}
-	
-	private function update_tracker_settings() {
-		if ( get_option( $this->plugin_name.'-tracking-mode' ) == 'js' &&!empty(get_option( $this->plugin_name.'-url' )) && !empty(get_option( $this->plugin_name.'-tracking-id' )) && !empty(get_option( $this->plugin_name.'-token' )) ) {
-			$piwikId = get_option( $this->plugin_name.'-tracking-id' );
-			
-			$piwikFileDir = $this->plugin_name_url . 'inc/frontend/';
-			$piwikJsFile = $this->plugin_name_dir . 'inc/frontend/track.js';
-			$js = 'var _paq = _paq || []; _paq.push(["trackPageView"]); _paq.push(["enableLinkTracking"]); (function() { var u="'. $piwikFileDir .'piwik.php"; _paq.push(["setTrackerUrl", u]); _paq.push(["setSiteId", "'. $piwikId .'"]);  var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript"; g.async=true; g.defer=true; g.src=u; s.parentNode.insertBefore(g,s); })();';
-			file_put_contents($piwikJsFile, $js);
+	/*
+	private function check_for_update() {
+		$our_plugin = plugin_basename( __FILE__ );
+		// If an update has taken place and the updated type is plugins and the plugins element exists
+		if( $options['action'] == 'update' && $options['type'] == 'plugin' && isset( $options['plugins'] ) ) {
+			// Iterate through the plugins being updated and check if ours is there
+			foreach( $options['plugins'] as $plugin ) {
+				if( $plugin == $our_plugin ) {
+					$this->update_tracker_settings();
+				}
+			}
 		}
 		
 	}
 	
+	private function update_tracker_settings() {
+		if ( get_option( $this->plugin_name.'-tracking-mode' ) != 'php' && !empty(get_option( $this->plugin_name.'-url' )) && !empty(get_option( $this->plugin_name.'-tracking-id' )) && !empty(get_option( $this->plugin_name.'-token' )) ) {
+						$piwikId = get_option( $this->plugin_name.'-tracking-id' );
+						$piwikFileDir = $this->plugin_name_url . 'inc/frontend/';
+						$piwikJsFile = $this->plugin_name_dir . 'inc/frontend/track.js';
+						$js = 'var _paq = _paq || []; _paq.push(["trackPageView"]); _paq.push(["enableLinkTracking"]); (function() { var u="'. $piwikFileDir .'piwik.php"; _paq.push(["setTrackerUrl", u]); _paq.push(["setSiteId", "'. $piwikId .'"]);  var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript"; g.async=true; g.defer=true; g.src=u; s.parentNode.insertBefore(g,s); })();';
+						file_put_contents($piwikJsFile, $js);
+		}
+	}
+	*/
 	public function custom_redirect( $admin_notice, $response ) {
 		wp_redirect( esc_url_raw( add_query_arg( array(
 									'matomo_tracker_admin_add_notice' => $admin_notice,

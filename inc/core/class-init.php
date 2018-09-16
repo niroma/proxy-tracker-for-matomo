@@ -132,7 +132,7 @@ class Init {
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_admin_menu' );
 		$this->loader->add_action( 'admin_post_matomo_tracker_form_response', $plugin_admin, 'check_for_event_submissions');
 		$this->loader->add_action( 'admin_notices', $plugin_admin, 'print_plugin_admin_notices');
-		$this->loader->add_action( 'upgrader_process_complete', $plugin_admin, 'update_tracker_settings');
+		/*$this->loader->add_action( 'upgrader_process_complete', $plugin_admin, 'check_for_update');*/
 
 	}
 
@@ -144,7 +144,7 @@ class Init {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Frontend\Frontend( $this->get_plugin_name(), $this->get_version(), $this->get_plugin_text_domain() );
+		$plugin_public = new Frontend\Frontend( $this->get_plugin_name(), $this->get_version(), $this->get_plugin_text_domain(), $this->get_plugin_name_dir() );
 
 		//$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		//$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );

@@ -59,7 +59,8 @@
 				</th>
 				<td>								
                 	<select id="<?php echo $this->plugin_name; ?>-tracking-mode" name="<?php echo $this->plugin_name; ?>-tracking-mode">
-						<option value="js"<?php if (( get_option( $this->plugin_name.'-tracking-mode' ) == 'js')  || empty(get_option( $this->plugin_name.'-tracking-mode' )) ) echo ' selected';  ?>>Javascript</option>
+						<option value="js"<?php if (( get_option( $this->plugin_name.'-tracking-mode' ) == 'js')  || empty(get_option( $this->plugin_name.'-tracking-mode' )) ) echo ' selected';  ?>>Javascript (External File)</option>
+						<option value="jsi"<?php if ( get_option( $this->plugin_name.'-tracking-mode' ) == 'jsi') echo ' selected';  ?>>Javascript (Inlined)</option>
 						<option value="php"<?php if ( get_option( $this->plugin_name.'-tracking-mode' ) == 'php') echo ' selected';  ?>>PHP</option>
 					</select>
 					<p  id="<?php echo $this->plugin_name; ?>-tracking-id-description" class="description">

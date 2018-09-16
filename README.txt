@@ -5,7 +5,7 @@ Tags: matomo, piwik, analytics, tracking code
 Requires at least: 3.0.1
 Tested up to: 4.9.8
 Requires PHP: 5.6.0
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -60,3 +60,7 @@ Features :
 * JS Tracking Mode is no more including inline javascript and now calls a JS File 
 * JS Tracking file loading mode is now customizable (defer, async or nothing)
 * JS Tracking file can be disallowed in robots.txt
+
+= 1.2.1 =
+* Added new settings to inline javascript as in previous version
+* Workaround to solve js tarcking reported issue (https://wordpress.org/support/topic/js-tracking-mode-doesnt-work-since-v-1-2-0/)

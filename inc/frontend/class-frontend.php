@@ -42,6 +42,8 @@ class Frontend {
 	 * @var      string    $plugin_text_domain    The text domain of this plugin.
 	 */
 	private $plugin_text_domain;
+	
+	private $plugin_name_dir;
 
 	/**
 	 * Initialize the class and set its properties.
@@ -51,11 +53,13 @@ class Frontend {
 	 * @param       string $version            The version of this plugin.
 	 * @param       string $plugin_text_domain The text domain of this plugin.
 	 */
-	public function __construct( $plugin_name, $version, $plugin_text_domain ) {
+	public function __construct( $plugin_name, $version, $plugin_text_domain, $plugin_name_dir ) {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 		$this->plugin_text_domain = $plugin_text_domain;
+		
+		$this->plugin_name_dir = $plugin_name_dir;
 
 	}
 
@@ -107,15 +111,36 @@ class Frontend {
 	*/
 	public function add_tracking_code_footer() {
 		if ( !empty(get_option( $this->plugin_name.'-url' )) && !empty(get_option( $this->plugin_name.'-tracking-id' )) && !empty(get_option( $this->plugin_name.'-token' )) ) {
-			$piwikFileDir = plugin_dir_url( __FILE__ );
-			$matomoJsMode = get_option( $this->plugin_name.'-javascript-mode' );
-			$matomoScript = "<script type='text/javascript'";
-			if ($matomoJsMode == 'defer') $matomoScript .= " defer='defer'";
-			if ($matomoJsMode == 'async') $matomoScript .= " async='async'";
-			$matomoScript .= " src='".$piwikFileDir."track.js'></script>";
-			echo $matomoScript;
+			$matomoJsType = get_option( $this->plugin_name.'-tracking-mode' );
+			if ($matomoJsType == 'jsi') {
+				echo '<script type="text/javascript">'. $this->get_javascript_tracking_code() .'</script>';
+			} else {
+				$piwikJsFile = $this->plugin_name_dir . 'inc/frontend/track.js';
+				file_put_contents($piwikJsFile, $this->get_javascript_tracking_code());
+				$matomoJsMode = get_option( $this->plugin_name.'-javascript-mode' );
+				$piwikFileDir = plugin_dir_url( __FILE__ );
+				$matomoScript = "<script type='text/javascript'";
+				if ($matomoJsMode == 'defer') $matomoScript .= " defer='defer'";
+				if ($matomoJsMode == 'async') $matomoScript .= " async='async'";
+				$matomoScript .= " src='".$piwikFileDir."track.js'></script>";
+				echo $matomoScript;
+			}
 		}
 	}
+	/*
+	private function update_tracker_settings() {
+		if ( get_option( $this->plugin_name.'-tracking-mode' ) != 'php' && !empty(get_option( $this->plugin_name.'-url' )) && !empty(get_option( $this->plugin_name.'-tracking-id' )) && !empty(get_option( $this->plugin_name.'-token' )) ) {
+			$piwikJsFile = plugin_dir_url( __FILE__ ) . 'track.js';
+			file_put_contents($piwikJsFile, $this->get_javascript_tracking_code());
+		}
+	}
+	*/
+	private function get_javascript_tracking_code() {
+		$piwikFileDir = plugin_dir_url( __FILE__ );
+		$piwikId = get_option( $this->plugin_name.'-tracking-id' );
+		return 'var _paq = _paq || []; _paq.push(["trackPageView"]); _paq.push(["enableLinkTracking"]); (function() { var u="'. $piwikFileDir .'piwik.php"; _paq.push(["setTrackerUrl", u]); _paq.push(["setSiteId", "'. $piwikId .'"]);  var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript"; g.async=true; g.defer=true; g.src=u; s.parentNode.insertBefore(g,s); })();';
+	}
+	
 	
 	public function disallow_javascript_tracking( $output, $public ) {
 		if ( '1' === $public ) {
