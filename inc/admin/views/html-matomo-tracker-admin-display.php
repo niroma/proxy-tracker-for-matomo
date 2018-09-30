@@ -53,6 +53,20 @@
 			</tr>	
 			<tr valign="top">
 				<th scope="row">
+					<label for="<?php echo $this->plugin_name; ?>-users-auth">
+						<span><?php esc_attr_e('Users Tracking', $this->plugin_text_domain); ?></span>
+					</label>
+				</th>
+				<td>															
+                	<select id="<?php echo $this->plugin_name; ?>-users-auth" name="<?php echo $this->plugin_name; ?>-users-auth">
+						<option value="all"<?php if (( get_option( $this->plugin_name.'-users-auth' ) == 'all')  || empty(get_option( $this->plugin_name.'-users-auth' )) ) echo ' selected';  ?>>Track All Users</option>
+						<option value="loggedin"<?php if ( get_option( $this->plugin_name.'-users-auth' ) == 'loggedin') echo ' selected';  ?>>Disable tracking for logged in user</option>
+						<option value="admin"<?php if ( get_option( $this->plugin_name.'-users-auth' ) == 'admin') echo ' selected';  ?>>Disable tracking for admin only</option>
+					</select>
+				</td>
+			</tr>	
+			<tr valign="top">
+				<th scope="row">
 					<label for="<?php echo $this->plugin_name; ?>-tracking-mode">
 						<span><?php esc_attr_e('Tracking Mode', $this->plugin_text_domain); ?></span>
 					</label>
@@ -69,6 +83,7 @@
                     </p>	
 				</td>
 			</tr>	
+            <?php /*
 			<tr id="matomoJsMode" valign="top">
 				<th scope="row">
 					<label for="<?php echo $this->plugin_name; ?>-javascript-mode">
@@ -83,6 +98,7 @@
 					</select>
 				</td>
 			</tr>	
+			*/ ?>
 			<tr id="matomoJsDisallowRobot" valign="top">
 				<th scope="row">
 					<label for="<?php echo $this->plugin_name; ?>-javascript-disallow-robot">

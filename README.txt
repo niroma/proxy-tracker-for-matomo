@@ -63,4 +63,8 @@ Features :
 
 = 1.2.1 =
 * Added new settings to inline javascript as in previous version
-* Workaround to solve js tarcking reported issue (https://wordpress.org/support/topic/js-tracking-mode-doesnt-work-since-v-1-2-0/)
+* Workaround to solve js tracking reported issue (https://wordpress.org/support/topic/js-tracking-mode-doesnt-work-since-v-1-2-0/)
+
+= 1.2.2 =
+* Now uses enqueue script to enqueue external JS File (No more defer or async option)
+* Added an option to disable logged-in users tracking

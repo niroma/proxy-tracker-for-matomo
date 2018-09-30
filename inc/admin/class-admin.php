@@ -135,8 +135,9 @@ class Admin {
 				$matomoToken = $_POST[$this->plugin_name.'-token'] ?  sanitize_text_field($_POST[$this->plugin_name.'-token']) : '';
 				$matomoId = $_POST[$this->plugin_name.'-tracking-id'] ? (int) $_POST[$this->plugin_name.'-tracking-id'] : '';
 				$matomoMode = $_POST[$this->plugin_name.'-tracking-mode'] ? $_POST[$this->plugin_name.'-tracking-mode'] : '';
-				$matomoJsMode = $_POST[$this->plugin_name.'-javascript-mode'] ? $_POST[$this->plugin_name.'-javascript-mode'] : 'defer';
+				/*$matomoJsMode = $_POST[$this->plugin_name.'-javascript-mode'] ? $_POST[$this->plugin_name.'-javascript-mode'] : 'defer';*/
 				$matomoDisallowRobot = $_POST[$this->plugin_name.'-javascript-disallow-robot'] ? $_POST[$this->plugin_name.'-javascript-disallow-robot'] : 'y';
+				$matomoUsers = $_POST[$this->plugin_name.'-users-auth'] ? $_POST[$this->plugin_name.'-users-auth'] : 'all';
 				
 				if (empty($matomoUrl)) {
 					$admin_notice = "error";
@@ -177,16 +178,23 @@ class Admin {
 					} else {
 						add_option( $this->plugin_name.'-tracking-mode', $matomoMode);
 					}	
+					/*
 					if ( get_option( $this->plugin_name.'-javascript-mode' ) !== false ) {
 						update_option( $this->plugin_name.'-javascript-mode', $matomoJsMode );
 					} else {
 						add_option( $this->plugin_name.'-javascript-mode', $matomoJsMode);
 					}		
+					*/
 					if ( get_option( $this->plugin_name.'-javascript-disallow-robot' ) !== false ) {
 						update_option( $this->plugin_name.'-javascript-disallow-robot', $matomoDisallowRobot );
 					} else {
 						add_option( $this->plugin_name.'-javascript-disallow-robot', $matomoDisallowRobot);
 					}		
+					if ( get_option( $this->plugin_name.'-users-auth' ) !== false ) {
+						update_option( $this->plugin_name.'-users-auth', $matomoUsers );
+					} else {
+						add_option( $this->plugin_name.'-users-auth', $matomoUsers);
+					}	
 					$admin_notice = "success";
 					$messageLog .= 'Settings saved';
 				}

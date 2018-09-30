@@ -59,6 +59,8 @@ class Init {
 	 */
 	public function __construct() {
 
+		//add_action( 'plugins_loaded', array( $this, 'check_if_user_logged_in' ) );
+
 		$this->plugin_name = NS\PLUGIN_NAME;
 		$this->version = NS\PLUGIN_VERSION;
 		$this->plugin_basename = NS\PLUGIN_BASENAME;
@@ -71,6 +73,7 @@ class Init {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+		
 	}
 
 	/**
@@ -148,15 +151,39 @@ class Init {
 
 		//$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		//$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-		if ( !empty(get_option( $this->plugin_name.'-tracking-mode' )) && get_option( $this->plugin_name.'-tracking-mode') == 'php' ) {
-			$this->loader->add_action('wp_head', $plugin_public, 'add_php_tracking');
-		} else {
-			$this->loader->add_action( 'wp_footer', $plugin_public, 'add_tracking_code_footer' );
-			if ( empty(get_option( $this->plugin_name.'-javascript-disallow-robot' )) || get_option( $this->plugin_name.'-javascript-disallow-robot') == 'y' ) {
-				$this->loader->add_filter( 'robots_txt', $plugin_public, 'disallow_javascript_tracking', 10, 2 );
+		
+		/*$this->loader->add_action( 'plugins_loaded', $plugin_public, 'check_if_user_logged_in' );*/
+		$display = true;
+		if ( !empty(get_option( $this->plugin_name.'-users-auth' )) && get_option( $this->plugin_name.'-users-auth' ) == $this->check_if_user_logged_in() ) 
+			$display = false;
+		
+		
+		if ($display) {
+			if ( !empty(get_option( $this->plugin_name.'-tracking-mode' )) && get_option( $this->plugin_name.'-tracking-mode') == 'php' ) {
+				$this->loader->add_action('wp_head', $plugin_public, 'add_php_tracking');
+			} else {
+				if ( get_option( $this->plugin_name.'-tracking-mode') == 'jsi' ) {
+					$this->loader->add_action( 'wp_footer', $plugin_public, 'add_tracking_code_footer' );
+				} else {
+					$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_tracking_script');
+									
+					if ( empty(get_option( $this->plugin_name.'-javascript-disallow-robot' )) || get_option( $this->plugin_name.'-javascript-disallow-robot') == 'y' ) {
+						$this->loader->add_filter( 'robots_txt', $plugin_public, 'disallow_javascript_tracking', 10, 2 );
+					}
+				}
 			}
+		} else {
+			$this->loader->add_action( 'wp_footer', $plugin_public, 'add_note_footer');
 		}
-
+	}
+	
+	public function check_if_user_logged_in() {
+		if(!function_exists('wp_get_current_user')) {
+			include(ABSPATH . "wp-includes/pluggable.php"); 
+		}
+		if( current_user_can('administrator') && get_option( $this->plugin_name.'-users-auth' ) == 'admin' ) return 'admin';
+		if ( is_user_logged_in() ) return 'loggedin';
+		return '';
 	}
 
 	/**
