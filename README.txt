@@ -5,7 +5,7 @@ Tags: matomo, piwik, analytics, tracking code
 Requires at least: 3.0.1
 Tested up to: 4.9.8
 Requires PHP: 5.6.0
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -68,3 +68,6 @@ Features :
 = 1.2.2 =
 * Now uses enqueue script to enqueue external JS File (No more defer or async option)
 * Added an option to disable logged-in users tracking
+
+= 1.2.3 =
+* Fixed track.js loading in header

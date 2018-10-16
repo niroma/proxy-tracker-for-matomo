@@ -119,7 +119,7 @@ class Frontend {
 		if ( !empty(get_option( $this->plugin_name.'-url' )) && !empty(get_option( $this->plugin_name.'-tracking-id' )) && !empty(get_option( $this->plugin_name.'-token' )) ) {
 			$piwikJsFile = $this->plugin_name_dir . 'inc/frontend/track.js';
 			file_put_contents($piwikJsFile, $this->get_javascript_tracking_code());
-			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'track.js', array(), $this->version, false );
+			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'track.js', array(), $this->version, true );
 		}
 	}
 	
