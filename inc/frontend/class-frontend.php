@@ -142,14 +142,13 @@ class Frontend {
 	
 	private function get_javascript_tracking_code() {
 		$currentDomain = get_site_url();
+		$parse = parse_url($currentDomain);
 		$piwikFileDir = str_replace($currentDomain, "", plugin_dir_url( __FILE__ ) );
+		if (!empty($parse['path'])) $piwikFileDir = $parse['path'] . $piwikFileDir;
 		$currentDomain = preg_replace("(^https?:)", "", $currentDomain );
 		$piwikId = get_option( $this->plugin_name.'-tracking-id' );
 		update_option( $this->plugin_name.'-frontend', plugin_dir_url( __FILE__ ) );
-		return 'var _paq = _paq || []; _paq.push(["trackPageView"]);_paq.push(["enableLinkTracking"]);(function() {var u="'. $currentDomain .'";var v= "'. $piwikFileDir .'";_paq.push(["setTrackerUrl", u+v+"piwik.php"]); _paq.push(["setSiteId", "'. $piwikId .'"]);var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0];g.type="text/javascript"; g.async=true; g.defer=true; g.src=u+v+"piwik.php";console.log(u+v+"piwik.php"); s.parentNode.insertBefore(g,s);})();';
-		/*
-		return 'var _paq = _paq || []; _paq.push(["trackPageView"]); _paq.push(["enableLinkTracking"]); (function() {var u="'. $piwikFileDir .'piwik.php"; _paq.push(["setTrackerUrl", u]); _paq.push(["setSiteId", "'. $piwikId .'"]); var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript"; g.async=true; g.defer=true; g.src=u; s.parentNode.insertBefore(g,s); })();';
-		*/
+		return 'var _paq = _paq || []; _paq.push(["trackPageView"]);_paq.push(["enableLinkTracking"]);(function() {var u="'. $currentDomain .'";var v= "'. $piwikFileDir .'";_paq.push(["setTrackerUrl", u+v+"piwik.php"]); _paq.push(["setSiteId", "'. $piwikId .'"]);var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0];g.type="text/javascript"; g.async=true; g.defer=true; g.src=u+v+"piwik.php";s.parentNode.insertBefore(g,s);})();';
 	}
 	
 	

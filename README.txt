@@ -3,9 +3,9 @@ Contributors: nir0ma
 Donate link: https://www.niroma.net/
 Tags: matomo, piwik, analytics, tracking code
 Requires at least: 3.0.1
-Tested up to: 4.9.8
+Tested up to: 5.2
 Requires PHP: 5.6.0
-Stable tag: 1.2.3
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -69,5 +69,8 @@ Features :
 * Now uses enqueue script to enqueue external JS File (No more defer or async option)
 * Added an option to disable logged-in users tracking
 
-= 1.2.3 =
+= 1.3.0 =
 * Fixed track.js loading in header
+
+= 1.3.0 =
+* Fixed tracking issue for subfolder install

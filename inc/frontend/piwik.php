@@ -14,6 +14,15 @@
 	// -----
 	define( 'WP_USE_THEMES', false );
 	$root = $_SERVER['DOCUMENT_ROOT'];
+	$file = $_SERVER['REQUEST_URI'];
+	if (strpos($file, '/wp-content') !== 0) {//CHECK FOR SUBFOLDER INSTALL
+		$dirs = explode("/", $file);
+		foreach ($dirs as $dir) {
+			if($dir === 'wp-content') break;
+			$root = rtrim($root, '/');
+			$root .= '/'.$dir;
+		}
+	}
 	require_once($root.'/wp-load.php'); 
 	include_once($root.'/wp-admin/includes/plugin.php' );
 	if ( is_plugin_active( 'matomo-tracker/matomo-tracker.php' ) && !empty(get_option( 'matomo-tracker-url' )) && !empty(get_option( 'matomo-tracker-tracking-id' )) && !empty(get_option( 'matomo-tracker-token' )) ) {
