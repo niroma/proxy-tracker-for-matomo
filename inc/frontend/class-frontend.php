@@ -127,18 +127,6 @@ class Frontend {
 	public function add_note_footer() {
 		echo '<!-- MATOMO TRACKING CODE DISABLED FOR '. get_option( $this->plugin_name.'-users-auth' ) .' USERS -->';
 	}
-	/*
-	private function update_tracker_settings() {
-		if ( get_option( $this->plugin_name.'-tracking-mode' ) != 'php' && !empty(get_option( $this->plugin_name.'-url' )) && !empty(get_option( $this->plugin_name.'-tracking-id' )) && !empty(get_option( $this->plugin_name.'-token' )) ) {
-			$piwikJsFile = plugin_dir_url( __FILE__ ) . 'track.js';
-			file_put_contents($piwikJsFile, $this->get_javascript_tracking_code());
-		}
-	}
-	*/
-	
-
-
-	
 	
 	private function get_javascript_tracking_code() {
 		$currentDomain = get_site_url();
@@ -150,7 +138,6 @@ class Frontend {
 		update_option( $this->plugin_name.'-frontend', plugin_dir_url( __FILE__ ) );
 		return 'var _paq = _paq || []; _paq.push(["trackPageView"]);_paq.push(["enableLinkTracking"]);(function() {var u="'. $currentDomain .'";var v= "'. $piwikFileDir .'";_paq.push(["setTrackerUrl", u+v+"piwik.php"]); _paq.push(["setSiteId", "'. $piwikId .'"]);var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0];g.type="text/javascript"; g.async=true; g.defer=true; g.src=u+v+"piwik.php";s.parentNode.insertBefore(g,s);})();';
 	}
-	
 	
 	public function disallow_javascript_tracking( $output, $public ) {
 		if ( '1' === $public ) {
