@@ -1,19 +1,19 @@
 === Mytomo Tracker ===
 Contributors: nir0ma
 Donate link: https://www.niroma.net/
-Tags: matomo tracker, matomo, piwik, analytics, tracking code
+Tags: mytomo tracker, matomo, piwik, analytics, tracking code
 Requires at least: 3.0.1
 Tested up to: 5.4.2
 Requires PHP: 5.6.0
-Stable tag: 1.4.0
+Stable tag: 1.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Mytomo tracker (formerly Matomo tracker) adds matomo (formerly piwik) tracking code to your website while hiding your matomo installation url
+Mytomo tracker (formerly Matomo tracker) adds matomo (formerly piwik) tracking code to your website while hiding your mytomo installation url
 
 == Description ==
 
-Matomo tracker adds matomo (formerly piwik) tracking code to your website while hiding your matomo installation url. You can choose between php and javascript tracking.
+Mytomo tracker adds matomo (formerly piwik) tracking code to your website while hiding your matomo installation url using the proxy mode (How do I setup Matomo to track multiple websites without revealing the Matomo server URL footprint which appears in the Javascript code in all websites? https://matomo.org/faq/how-to/faq_132/). You can choose between php and javascript tracking.
 Javascript tracking returns more details about your visitors while php tracking is more robust.
 
 You first need to :
@@ -26,11 +26,11 @@ Features :
 
 * Easy to install
 * Lightweight
-* Hide your matomo domain url
+* Hide your mytomo domain url
 
 == Installation ==
 
-* Upload `matomo-tracker` to the `/wp-content/plugins/` directory
+* Upload `mytomo-tracker` to the `/wp-content/plugins/` directory
 * Activate the plugin through the 'Plugins' menu in WordPress
 * Visit Settings >> Mytomo Tracker to add you matomo url and id 
 * Check your matomo installation to track your pageviews

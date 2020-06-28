@@ -16,7 +16,7 @@
 ?>
 <div class="wrap">
     <h2><?php echo esc_html(get_admin_page_title()); ?></h2>
-	<form name="matomo_tracker_settings" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post">
+	<form name="mytomo_tracker_settings" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post">
 		<table class="form-table">	
 			<tr valign="top">
 				<th scope="row">
@@ -37,7 +37,7 @@
 				</th>
 				<td>								
 					<input type="text" id="<?php echo $this->plugin_name; ?>-token" name="<?php echo $this->plugin_name; ?>-token" value ="<?php echo get_option( $this->plugin_name.'-token' ); ?>" class="regular-text" />
-					<p  id="<?php echo $this->plugin_name; ?>-token-description" class="description">Ex. : a8454100y45g22r8134sf99b1a87147f - Need help finding your token ? <a href="https://matomo.org/faq/general/faq_114/">Read Matomo FAQ</a></p>	
+					<p  id="<?php echo $this->plugin_name; ?>-token-description" class="description">Ex. : a8454100y45g22r8134sf99b1a87147f - Need help finding your token ? <a href="https://mytomo.org/faq/general/faq_114/">Read Matomo FAQ</a></p>	
 				</td>
 			</tr>	
 			<tr valign="top">
@@ -84,7 +84,7 @@
 				</td>
 			</tr>	
             <?php /*
-			<tr id="matomoJsMode" valign="top">
+			<tr id="mytomoJsMode" valign="top">
 				<th scope="row">
 					<label for="<?php echo $this->plugin_name; ?>-javascript-mode">
 						<span><?php esc_attr_e('Javascript Loading Mode', $this->plugin_text_domain); ?></span>
@@ -99,7 +99,7 @@
 				</td>
 			</tr>	
 			*/ ?>
-			<tr id="matomoJsDisallowRobot" valign="top">
+			<tr id="mytomoJsDisallowRobot" valign="top">
 				<th scope="row">
 					<label for="<?php echo $this->plugin_name; ?>-javascript-disallow-robot">
 						<span><?php esc_attr_e('Disallow JS File in robot.txt', $this->plugin_text_domain); ?></span>
@@ -119,8 +119,8 @@
 				<th scope="row">
 				</th>
 				<td>
-					<input type="hidden" name="action" value="matomo_tracker_form_response">
-					<?php wp_nonce_field( $this->plugin_name.'submit-matomo-form' ); ?>
+					<input type="hidden" name="action" value="mytomo_tracker_form_response">
+					<?php wp_nonce_field( $this->plugin_name.'submit-mytomo-form' ); ?>
 					<input class="button button-primary" type="submit" id="<?php echo $this->plugin_name; ?>-submit" name="<?php echo $this->plugin_name; ?>-submit" value="<?php esc_attr_e('Save Settings', $this->plugin_text_domain); ?>"/>
 				</td>
 			</tr>

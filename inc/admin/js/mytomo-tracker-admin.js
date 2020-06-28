@@ -2,11 +2,11 @@
 jQuery(document).ready(function($) {
 	$('#mytomo-tracker-tracking-mode').on('change', function() {
 		if ($(this).val() == 'js') {
-			$('#matomoJsMode').show();
-			$('#matomoJsDisallowRobot').show();
+			$('#mytomoJsMode').show();
+			$('#mytomoJsDisallowRobot').show();
 		} else {
-			$('#matomoJsMode').hide();
-			$('#matomoJsDisallowRobot').hide();
+			$('#mytomoJsMode').hide();
+			$('#mytomoJsDisallowRobot').hide();
 		}
 	});
 	$('#mytomo-tracker-tracking-mode').trigger('change');

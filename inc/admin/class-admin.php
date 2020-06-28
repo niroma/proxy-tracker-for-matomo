@@ -128,72 +128,72 @@ class Admin {
 	
 	
 	public function check_for_event_submissions(){
-			if ( isset($_POST['_wpnonce']) && wp_verify_nonce($_POST['_wpnonce'], $this->plugin_name.'submit-matomo-form') ){
+			if ( isset($_POST['_wpnonce']) && wp_verify_nonce($_POST['_wpnonce'], $this->plugin_name.'submit-mytomo-form') ){
 				$admin_notice = '';
 				$messageLog = '';
-				$matomoUrl = $_POST[$this->plugin_name.'-url'] ?  sanitize_text_field($_POST[$this->plugin_name.'-url']) : '';
-				$matomoToken = $_POST[$this->plugin_name.'-token'] ?  sanitize_text_field($_POST[$this->plugin_name.'-token']) : '';
-				$matomoId = $_POST[$this->plugin_name.'-tracking-id'] ? (int) $_POST[$this->plugin_name.'-tracking-id'] : '';
-				$matomoMode = $_POST[$this->plugin_name.'-tracking-mode'] ? $_POST[$this->plugin_name.'-tracking-mode'] : '';
-				/*$matomoJsMode = $_POST[$this->plugin_name.'-javascript-mode'] ? $_POST[$this->plugin_name.'-javascript-mode'] : 'defer';*/
-				$matomoDisallowRobot = $_POST[$this->plugin_name.'-javascript-disallow-robot'] ? $_POST[$this->plugin_name.'-javascript-disallow-robot'] : 'y';
-				$matomoUsers = $_POST[$this->plugin_name.'-users-auth'] ? $_POST[$this->plugin_name.'-users-auth'] : 'all';
+				$mytomoUrl = $_POST[$this->plugin_name.'-url'] ?  sanitize_text_field($_POST[$this->plugin_name.'-url']) : '';
+				$mytomoToken = $_POST[$this->plugin_name.'-token'] ?  sanitize_text_field($_POST[$this->plugin_name.'-token']) : '';
+				$mytomoId = $_POST[$this->plugin_name.'-tracking-id'] ? (int) $_POST[$this->plugin_name.'-tracking-id'] : '';
+				$mytomoMode = $_POST[$this->plugin_name.'-tracking-mode'] ? $_POST[$this->plugin_name.'-tracking-mode'] : '';
+				/*$mytomoJsMode = $_POST[$this->plugin_name.'-javascript-mode'] ? $_POST[$this->plugin_name.'-javascript-mode'] : 'defer';*/
+				$mytomoDisallowRobot = $_POST[$this->plugin_name.'-javascript-disallow-robot'] ? $_POST[$this->plugin_name.'-javascript-disallow-robot'] : 'y';
+				$mytomoUsers = $_POST[$this->plugin_name.'-users-auth'] ? $_POST[$this->plugin_name.'-users-auth'] : 'all';
 				
-				if (empty($matomoUrl)) {
+				if (empty($mytomoUrl)) {
 					$admin_notice = "error";
 					$messageLog .= 'url is empty ';
 				
 				}
-				if (empty($matomoToken)) {
+				if (empty($mytomoToken)) {
 					$admin_notice = "error";
 					$messageLog .= 'token is empty ';
 				
 				}
-				if (empty($matomoId)) {
+				if (empty($mytomoId)) {
 					$admin_notice = "error";
 					$messageLog .= 'id is empty ';
 				}
-				if (empty($matomoMode)) {
+				if (empty($mytomoMode)) {
 					$admin_notice = "error";
 					$messageLog .= 'mode is empty ';
 				}
 				if (empty($admin_notice)) {
 					if ( get_option( $this->plugin_name.'-url' ) !== false ) {
-						update_option( $this->plugin_name.'-url', $matomoUrl );
+						update_option( $this->plugin_name.'-url', $mytomoUrl );
 					} else {
-						add_option( $this->plugin_name.'-url', $matomoUrl);
+						add_option( $this->plugin_name.'-url', $mytomoUrl);
 					}
 					if ( get_option( $this->plugin_name.'-token' ) !== false ) {
-						update_option( $this->plugin_name.'-token', $matomoToken );
+						update_option( $this->plugin_name.'-token', $mytomoToken );
 					} else {
-						add_option( $this->plugin_name.'-token', $matomoToken);
+						add_option( $this->plugin_name.'-token', $mytomoToken);
 					}
 					if ( get_option( $this->plugin_name.'-tracking-id' ) !== false ) {
-						update_option( $this->plugin_name.'-tracking-id', $matomoId );
+						update_option( $this->plugin_name.'-tracking-id', $mytomoId );
 					} else {
-						add_option( $this->plugin_name.'-tracking-id', $matomoId);
+						add_option( $this->plugin_name.'-tracking-id', $mytomoId);
 					}	
 					if ( get_option( $this->plugin_name.'-tracking-mode' ) !== false ) {
-						update_option( $this->plugin_name.'-tracking-mode', $matomoMode );
+						update_option( $this->plugin_name.'-tracking-mode', $mytomoMode );
 					} else {
-						add_option( $this->plugin_name.'-tracking-mode', $matomoMode);
+						add_option( $this->plugin_name.'-tracking-mode', $mytomoMode);
 					}	
 					/*
 					if ( get_option( $this->plugin_name.'-javascript-mode' ) !== false ) {
-						update_option( $this->plugin_name.'-javascript-mode', $matomoJsMode );
+						update_option( $this->plugin_name.'-javascript-mode', $mytomoJsMode );
 					} else {
-						add_option( $this->plugin_name.'-javascript-mode', $matomoJsMode);
+						add_option( $this->plugin_name.'-javascript-mode', $mytomoJsMode);
 					}		
 					*/
 					if ( get_option( $this->plugin_name.'-javascript-disallow-robot' ) !== false ) {
-						update_option( $this->plugin_name.'-javascript-disallow-robot', $matomoDisallowRobot );
+						update_option( $this->plugin_name.'-javascript-disallow-robot', $mytomoDisallowRobot );
 					} else {
-						add_option( $this->plugin_name.'-javascript-disallow-robot', $matomoDisallowRobot);
+						add_option( $this->plugin_name.'-javascript-disallow-robot', $mytomoDisallowRobot);
 					}		
 					if ( get_option( $this->plugin_name.'-users-auth' ) !== false ) {
-						update_option( $this->plugin_name.'-users-auth', $matomoUsers );
+						update_option( $this->plugin_name.'-users-auth', $mytomoUsers );
 					} else {
-						add_option( $this->plugin_name.'-users-auth', $matomoUsers);
+						add_option( $this->plugin_name.'-users-auth', $mytomoUsers);
 					}	
 					$admin_notice = "success";
 					$messageLog .= 'Settings saved';
@@ -235,8 +235,8 @@ class Admin {
 	*/
 	public function custom_redirect( $admin_notice, $response ) {
 		wp_redirect( esc_url_raw( add_query_arg( array(
-									'matomo_tracker_admin_add_notice' => $admin_notice,
-									'matomo_tracker_response' => $response,
+									'mytomo_tracker_admin_add_notice' => $admin_notice,
+									'mytomo_tracker_response' => $response,
 									),
 							admin_url('options-general.php?page='. $this->plugin_name ) 
 					) ) );
@@ -244,15 +244,15 @@ class Admin {
 	}
 
 	public function print_plugin_admin_notices() {              
-		  if ( isset( $_REQUEST['matomo_tracker_admin_add_notice'] ) ) {
-			if( $_REQUEST['matomo_tracker_admin_add_notice'] === "success") {
+		  if ( isset( $_REQUEST['mytomo_tracker_admin_add_notice'] ) ) {
+			if( $_REQUEST['mytomo_tracker_admin_add_notice'] === "success") {
 				$html =	'<div class="notice notice-success is-dismissible"> 
-							<p><strong>' . htmlspecialchars( print_r( $_REQUEST['matomo_tracker_response'], true) ) . '</strong></p></div>';
+							<p><strong>' . htmlspecialchars( print_r( $_REQUEST['mytomo_tracker_response'], true) ) . '</strong></p></div>';
 				echo $html;
 			}
-			if( $_REQUEST['matomo_tracker_admin_add_notice'] === "error") {
+			if( $_REQUEST['mytomo_tracker_admin_add_notice'] === "error") {
 				$html =	'<div class="notice notice-error is-dismissible"> 
-							<p><strong>' . htmlspecialchars( print_r( $_REQUEST['matomo_tracker_response'], true) ) . '</strong></p></div>';
+							<p><strong>' . htmlspecialchars( print_r( $_REQUEST['mytomo_tracker_response'], true) ) . '</strong></p></div>';
 				echo $html;
 			}
 		  } else {

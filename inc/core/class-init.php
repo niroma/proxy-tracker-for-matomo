@@ -133,7 +133,7 @@ class Init {
 		 *
 		 */
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_admin_menu' );
-		$this->loader->add_action( 'admin_post_matomo_tracker_form_response', $plugin_admin, 'check_for_event_submissions');
+		$this->loader->add_action( 'admin_post_mytomo_tracker_form_response', $plugin_admin, 'check_for_event_submissions');
 		$this->loader->add_action( 'admin_notices', $plugin_admin, 'print_plugin_admin_notices');
 		/*$this->loader->add_action( 'upgrader_process_complete', $plugin_admin, 'check_for_update');*/
 

@@ -14,8 +14,8 @@
  * @wordpress-plugin
  * Plugin Name:       Mytomo Tracker
  * Plugin URI:        https://wordpress.org/plugins/mytomo-tracker/
- * Description:       Matomo tracker adds matomo (formerly piwik) tracking code to your website while hiding your matomo installation url
- * Version:           1.4.0
+ * Description:       Mytomo tracker adds matomo (formerly piwik) tracking code to your website while hiding your matomo installation url
+ * Version:           1.5.0
  * Author:            Niroma
  * Author URI:        https://www.niroma.net/
  * License:           GPL-2.0+
