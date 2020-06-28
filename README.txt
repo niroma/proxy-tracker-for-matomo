@@ -1,15 +1,15 @@
-=== Matomo Tracker ===
+=== Mytomo Tracker ===
 Contributors: nir0ma
 Donate link: https://www.niroma.net/
-Tags: matomo, piwik, analytics, tracking code
+Tags: matomo tracker, matomo, piwik, analytics, tracking code
 Requires at least: 3.0.1
-Tested up to: 5.2
+Tested up to: 5.4.2
 Requires PHP: 5.6.0
 Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Matomo tracker adds matomo (formerly piwik) tracking code to your website while hiding your matomo installation url
+Mytomo tracker (formerly Matomo tracker) adds matomo (formerly piwik) tracking code to your website while hiding your matomo installation url
 
 == Description ==
 
@@ -32,12 +32,12 @@ Features :
 
 * Upload `matomo-tracker` to the `/wp-content/plugins/` directory
 * Activate the plugin through the 'Plugins' menu in WordPress
-* Visit Settings >> Matomo Tracker to add you matomo url and id 
+* Visit Settings >> Mytomo Tracker to add you matomo url and id 
 * Check your matomo installation to track your pageviews
 
 == Screenshot ==
 
-1. Matomo Tracker admin page
+1. Mytomo Tracker admin page
 
 == Changelog ==
 
@@ -74,3 +74,6 @@ Features :
 
 = 1.4.0 =
 * Fixed tracking issue for subfolder install
+
+= 1.5.0 =
+* Renamed Matomoto Tracker to Mytomo tracker

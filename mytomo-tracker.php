@@ -9,22 +9,22 @@
  *
  * @link              https://www.niroma.net
  * @since             1.0.0
- * @package           Matomo_Tracker
+ * @package           Mytomo_Tracker
  *
  * @wordpress-plugin
- * Plugin Name:       Matomo Tracker
- * Plugin URI:        https://wordpress.org/plugins/matomo-tracker/
+ * Plugin Name:       Mytomo Tracker
+ * Plugin URI:        https://wordpress.org/plugins/mytomo-tracker/
  * Description:       Matomo tracker adds matomo (formerly piwik) tracking code to your website while hiding your matomo installation url
  * Version:           1.4.0
  * Author:            Niroma
  * Author URI:        https://www.niroma.net/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       matomo-tracker
+ * Text Domain:       mytomo-tracker
  * Domain Path:       /languages
  */
 
-namespace Matomo_Tracker;
+namespace Mytomo_Tracker;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -37,9 +37,9 @@ if ( ! defined( 'WPINC' ) ) {
 
 define( __NAMESPACE__ . '\NS', __NAMESPACE__ . '\\' );
 
-define( NS . 'PLUGIN_NAME', 'matomo-tracker' );
+define( NS . 'PLUGIN_NAME', 'mytomo-tracker' );
 
-define( NS . 'PLUGIN_VERSION', '1.4.0' );
+define( NS . 'PLUGIN_VERSION', '1.5.0' );
 
 define( NS . 'PLUGIN_NAME_DIR', plugin_dir_path( __FILE__ ) );
 
@@ -47,7 +47,7 @@ define( NS . 'PLUGIN_NAME_URL', plugin_dir_url( __FILE__ ) );
 
 define( NS . 'PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 
-define( NS . 'PLUGIN_TEXT_DOMAIN', 'matomo-tracker' );
+define( NS . 'PLUGIN_TEXT_DOMAIN', 'mytomo-tracker' );
 
 
 /**
@@ -78,7 +78,7 @@ register_deactivation_hook( __FILE__, array( NS . 'Inc\Core\Deactivator', 'deact
  *
  * @since    1.0.0
  */
-class Matomo_Tracker {
+class Mytomo_Tracker {
 
 	/**
 	 * The instance of the plugin.
@@ -115,7 +115,7 @@ class Matomo_Tracker {
  * can interact with the plugin's hooks contained within.
  **/
 function wp_plugin_name_init() {
-		return Matomo_Tracker::init();
+		return Mytomo_Tracker::init();
 }
 
 $min_php = '5.6.0';

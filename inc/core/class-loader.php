@@ -1,6 +1,6 @@
 <?php
 
-namespace Matomo_Tracker\Inc\Core;
+namespace Mytomo_Tracker\Inc\Core;
 
 /**
  * Register all actions and filters for the plugin

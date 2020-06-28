@@ -22,7 +22,7 @@
  * @link       https://www.niroma.net
  * @since      1.0.0
  *
- * @package    Matomo_Tracker
+ * @package    Mytomo_Tracker
  */
 
 // If uninstall not called from WordPress, then exit.

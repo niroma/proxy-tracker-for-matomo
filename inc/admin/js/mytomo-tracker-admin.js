@@ -1,6 +1,6 @@
 // JavaScript Document
 jQuery(document).ready(function($) {
-	$('#matomo-tracker-tracking-mode').on('change', function() {
+	$('#mytomo-tracker-tracking-mode').on('change', function() {
 		if ($(this).val() == 'js') {
 			$('#matomoJsMode').show();
 			$('#matomoJsDisallowRobot').show();
@@ -9,5 +9,5 @@ jQuery(document).ready(function($) {
 			$('#matomoJsDisallowRobot').hide();
 		}
 	});
-	$('#matomo-tracker-tracking-mode').trigger('change');
+	$('#mytomo-tracker-tracking-mode').trigger('change');
 });

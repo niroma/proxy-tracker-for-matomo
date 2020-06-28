@@ -1,6 +1,6 @@
 <?php
 
-namespace Matomo_Tracker\Inc\Admin;
+namespace Mytomo_Tracker\Inc\Admin;
 
 /**
  * The admin-specific functionality of the plugin.
@@ -83,7 +83,7 @@ class Admin {
 		 * class.
 		 */
 /*
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/matomo-tracker-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/mytomo-tracker-admin.css', array(), $this->version, 'all' );
 
 	}
 
@@ -105,12 +105,12 @@ class Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/matomo-tracker-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/mytomo-tracker-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
 
 	public function display_plugin_setup_page() {
-		include_once( 'views/html-matomo-tracker-admin-display.php' );
+		include_once( 'views/html-mytomo-tracker-admin-display.php' );
 	}
 	
 	public function add_plugin_admin_menu() {
@@ -123,7 +123,7 @@ class Admin {
      *        Administration Menus: http://codex.wordpress.org/Administration_Menus
      *
      */
-		add_submenu_page( 'options-general.php', 'Matomo Tracker', 'Matomo Tracker', 'manage_categories', $this->plugin_name, array($this, 'display_plugin_setup_page') );
+		add_submenu_page( 'options-general.php', 'Mytomo Tracker', 'Mytomo Tracker', 'manage_categories', $this->plugin_name, array($this, 'display_plugin_setup_page') );
 	}
 	
 	

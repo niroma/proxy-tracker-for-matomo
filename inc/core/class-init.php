@@ -1,9 +1,9 @@
 <?php
 
-namespace Matomo_Tracker\Inc\Core;
-use Matomo_Tracker as NS;
-use Matomo_Tracker\Inc\Admin as Admin;
-use Matomo_Tracker\Inc\Frontend as Frontend;
+namespace Mytomo_Tracker\Inc\Core;
+use Mytomo_Tracker as NS;
+use Mytomo_Tracker\Inc\Admin as Admin;
+use Mytomo_Tracker\Inc\Frontend as Frontend;
 
 /**
  * The core plugin class.
