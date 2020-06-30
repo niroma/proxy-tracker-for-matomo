@@ -1,9 +1,9 @@
 <?php
 
-namespace Mytomo_Tracker\Inc\Core;
-use Mytomo_Tracker as NS;
-use Mytomo_Tracker\Inc\Admin as Admin;
-use Mytomo_Tracker\Inc\Frontend as Frontend;
+namespace Proxy_Tracker_For_Matomo\Inc\Core;
+use Proxy_Tracker_For_Matomo as NS;
+use Proxy_Tracker_For_Matomo\Inc\Admin as Admin;
+use Proxy_Tracker_For_Matomo\Inc\Frontend as Frontend;
 
 /**
  * The core plugin class.
@@ -133,7 +133,7 @@ class Init {
 		 *
 		 */
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_admin_menu' );
-		$this->loader->add_action( 'admin_post_mytomo_tracker_form_response', $plugin_admin, 'check_for_event_submissions');
+		$this->loader->add_action( 'admin_post_proxyTrackerForMatomo_tracker_form_response', $plugin_admin, 'check_for_event_submissions');
 		$this->loader->add_action( 'admin_notices', $plugin_admin, 'print_plugin_admin_notices');
 		/*$this->loader->add_action( 'upgrader_process_complete', $plugin_admin, 'check_for_update');*/
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Mytomo_Tracker\Inc\Admin;
+namespace Proxy_Tracker_For_Matomo\Inc\Admin;
 
 /**
  * The admin-specific functionality of the plugin.
@@ -83,7 +83,7 @@ class Admin {
 		 * class.
 		 */
 /*
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/mytomo-tracker-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/proxy-tracker-for-matomo-admin.css', array(), $this->version, 'all' );
 
 	}
 
@@ -105,12 +105,12 @@ class Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/mytomo-tracker-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/proxy-tracker-for-matomo-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
 
 	public function display_plugin_setup_page() {
-		include_once( 'views/html-mytomo-tracker-admin-display.php' );
+		include_once( 'views/html-proxy-tracker-for-matomo-admin-display.php' );
 	}
 	
 	public function add_plugin_admin_menu() {
@@ -123,77 +123,77 @@ class Admin {
      *        Administration Menus: http://codex.wordpress.org/Administration_Menus
      *
      */
-		add_submenu_page( 'options-general.php', 'Mytomo Tracker', 'Mytomo Tracker', 'manage_categories', $this->plugin_name, array($this, 'display_plugin_setup_page') );
+		add_submenu_page( 'options-general.php', 'Proxy Tracker For Matomo', 'Proxy Tracker For Matomo', 'manage_categories', $this->plugin_name, array($this, 'display_plugin_setup_page') );
 	}
 	
 	
 	public function check_for_event_submissions(){
-			if ( isset($_POST['_wpnonce']) && wp_verify_nonce($_POST['_wpnonce'], $this->plugin_name.'submit-mytomo-form') ){
+			if ( isset($_POST['_wpnonce']) && wp_verify_nonce($_POST['_wpnonce'], $this->plugin_name.'submit-proxyTrackerForMatomo-form') ){
 				$admin_notice = '';
 				$messageLog = '';
-				$mytomoUrl = $_POST[$this->plugin_name.'-url'] ?  sanitize_text_field($_POST[$this->plugin_name.'-url']) : '';
-				$mytomoToken = $_POST[$this->plugin_name.'-token'] ?  sanitize_text_field($_POST[$this->plugin_name.'-token']) : '';
-				$mytomoId = $_POST[$this->plugin_name.'-tracking-id'] ? (int) $_POST[$this->plugin_name.'-tracking-id'] : '';
-				$mytomoMode = $_POST[$this->plugin_name.'-tracking-mode'] ? $_POST[$this->plugin_name.'-tracking-mode'] : '';
-				/*$mytomoJsMode = $_POST[$this->plugin_name.'-javascript-mode'] ? $_POST[$this->plugin_name.'-javascript-mode'] : 'defer';*/
-				$mytomoDisallowRobot = $_POST[$this->plugin_name.'-javascript-disallow-robot'] ? $_POST[$this->plugin_name.'-javascript-disallow-robot'] : 'y';
-				$mytomoUsers = $_POST[$this->plugin_name.'-users-auth'] ? $_POST[$this->plugin_name.'-users-auth'] : 'all';
+				$proxyTrackerForMatomoUrl = $_POST[$this->plugin_name.'-url'] ?  sanitize_text_field($_POST[$this->plugin_name.'-url']) : '';
+				$proxyTrackerForMatomoToken = $_POST[$this->plugin_name.'-token'] ?  sanitize_text_field($_POST[$this->plugin_name.'-token']) : '';
+				$proxyTrackerForMatomoId = $_POST[$this->plugin_name.'-tracking-id'] ? (int) $_POST[$this->plugin_name.'-tracking-id'] : '';
+				$proxyTrackerForMatomoMode = $_POST[$this->plugin_name.'-tracking-mode'] ? $_POST[$this->plugin_name.'-tracking-mode'] : '';
+				/*$proxyTrackerForMatomoJsMode = $_POST[$this->plugin_name.'-javascript-mode'] ? $_POST[$this->plugin_name.'-javascript-mode'] : 'defer';*/
+				$proxyTrackerForMatomoDisallowRobot = $_POST[$this->plugin_name.'-javascript-disallow-robot'] ? $_POST[$this->plugin_name.'-javascript-disallow-robot'] : 'y';
+				$proxyTrackerForMatomoUsers = $_POST[$this->plugin_name.'-users-auth'] ? $_POST[$this->plugin_name.'-users-auth'] : 'all';
 				
-				if (empty($mytomoUrl)) {
+				if (empty($proxyTrackerForMatomoUrl)) {
 					$admin_notice = "error";
 					$messageLog .= 'url is empty ';
 				
 				}
-				if (empty($mytomoToken)) {
+				if (empty($proxyTrackerForMatomoToken)) {
 					$admin_notice = "error";
 					$messageLog .= 'token is empty ';
 				
 				}
-				if (empty($mytomoId)) {
+				if (empty($proxyTrackerForMatomoId)) {
 					$admin_notice = "error";
 					$messageLog .= 'id is empty ';
 				}
-				if (empty($mytomoMode)) {
+				if (empty($proxyTrackerForMatomoMode)) {
 					$admin_notice = "error";
 					$messageLog .= 'mode is empty ';
 				}
 				if (empty($admin_notice)) {
 					if ( get_option( $this->plugin_name.'-url' ) !== false ) {
-						update_option( $this->plugin_name.'-url', $mytomoUrl );
+						update_option( $this->plugin_name.'-url', $proxyTrackerForMatomoUrl );
 					} else {
-						add_option( $this->plugin_name.'-url', $mytomoUrl);
+						add_option( $this->plugin_name.'-url', $proxyTrackerForMatomoUrl);
 					}
 					if ( get_option( $this->plugin_name.'-token' ) !== false ) {
-						update_option( $this->plugin_name.'-token', $mytomoToken );
+						update_option( $this->plugin_name.'-token', $proxyTrackerForMatomoToken );
 					} else {
-						add_option( $this->plugin_name.'-token', $mytomoToken);
+						add_option( $this->plugin_name.'-token', $proxyTrackerForMatomoToken);
 					}
 					if ( get_option( $this->plugin_name.'-tracking-id' ) !== false ) {
-						update_option( $this->plugin_name.'-tracking-id', $mytomoId );
+						update_option( $this->plugin_name.'-tracking-id', $proxyTrackerForMatomoId );
 					} else {
-						add_option( $this->plugin_name.'-tracking-id', $mytomoId);
+						add_option( $this->plugin_name.'-tracking-id', $proxyTrackerForMatomoId);
 					}	
 					if ( get_option( $this->plugin_name.'-tracking-mode' ) !== false ) {
-						update_option( $this->plugin_name.'-tracking-mode', $mytomoMode );
+						update_option( $this->plugin_name.'-tracking-mode', $proxyTrackerForMatomoMode );
 					} else {
-						add_option( $this->plugin_name.'-tracking-mode', $mytomoMode);
+						add_option( $this->plugin_name.'-tracking-mode', $proxyTrackerForMatomoMode);
 					}	
 					/*
 					if ( get_option( $this->plugin_name.'-javascript-mode' ) !== false ) {
-						update_option( $this->plugin_name.'-javascript-mode', $mytomoJsMode );
+						update_option( $this->plugin_name.'-javascript-mode', $proxyTrackerForMatomoJsMode );
 					} else {
-						add_option( $this->plugin_name.'-javascript-mode', $mytomoJsMode);
+						add_option( $this->plugin_name.'-javascript-mode', $proxyTrackerForMatomoJsMode);
 					}		
 					*/
 					if ( get_option( $this->plugin_name.'-javascript-disallow-robot' ) !== false ) {
-						update_option( $this->plugin_name.'-javascript-disallow-robot', $mytomoDisallowRobot );
+						update_option( $this->plugin_name.'-javascript-disallow-robot', $proxyTrackerForMatomoDisallowRobot );
 					} else {
-						add_option( $this->plugin_name.'-javascript-disallow-robot', $mytomoDisallowRobot);
+						add_option( $this->plugin_name.'-javascript-disallow-robot', $proxyTrackerForMatomoDisallowRobot);
 					}		
 					if ( get_option( $this->plugin_name.'-users-auth' ) !== false ) {
-						update_option( $this->plugin_name.'-users-auth', $mytomoUsers );
+						update_option( $this->plugin_name.'-users-auth', $proxyTrackerForMatomoUsers );
 					} else {
-						add_option( $this->plugin_name.'-users-auth', $mytomoUsers);
+						add_option( $this->plugin_name.'-users-auth', $proxyTrackerForMatomoUsers);
 					}	
 					$admin_notice = "success";
 					$messageLog .= 'Settings saved';
@@ -235,8 +235,8 @@ class Admin {
 	*/
 	public function custom_redirect( $admin_notice, $response ) {
 		wp_redirect( esc_url_raw( add_query_arg( array(
-									'mytomo_tracker_admin_add_notice' => $admin_notice,
-									'mytomo_tracker_response' => $response,
+									'proxyTrackerForMatomo_tracker_admin_add_notice' => $admin_notice,
+									'proxyTrackerForMatomo_tracker_response' => $response,
 									),
 							admin_url('options-general.php?page='. $this->plugin_name ) 
 					) ) );
@@ -244,15 +244,15 @@ class Admin {
 	}
 
 	public function print_plugin_admin_notices() {              
-		  if ( isset( $_REQUEST['mytomo_tracker_admin_add_notice'] ) ) {
-			if( $_REQUEST['mytomo_tracker_admin_add_notice'] === "success") {
+		  if ( isset( $_REQUEST['proxyTrackerForMatomo_tracker_admin_add_notice'] ) ) {
+			if( $_REQUEST['proxyTrackerForMatomo_tracker_admin_add_notice'] === "success") {
 				$html =	'<div class="notice notice-success is-dismissible"> 
-							<p><strong>' . htmlspecialchars( print_r( $_REQUEST['mytomo_tracker_response'], true) ) . '</strong></p></div>';
+							<p><strong>' . htmlspecialchars( print_r( $_REQUEST['proxyTrackerForMatomo_tracker_response'], true) ) . '</strong></p></div>';
 				echo $html;
 			}
-			if( $_REQUEST['mytomo_tracker_admin_add_notice'] === "error") {
+			if( $_REQUEST['proxyTrackerForMatomo_tracker_admin_add_notice'] === "error") {
 				$html =	'<div class="notice notice-error is-dismissible"> 
-							<p><strong>' . htmlspecialchars( print_r( $_REQUEST['mytomo_tracker_response'], true) ) . '</strong></p></div>';
+							<p><strong>' . htmlspecialchars( print_r( $_REQUEST['proxyTrackerForMatomo_tracker_response'], true) ) . '</strong></p></div>';
 				echo $html;
 			}
 		  } else {

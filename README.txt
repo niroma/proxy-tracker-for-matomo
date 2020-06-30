@@ -1,7 +1,7 @@
-=== Mytomo Tracker ===
+=== Proxy Tracker For Matomo ===
 Contributors: nir0ma
 Donate link: https://www.niroma.net/
-Tags: mytomo tracker, matomo, piwik, analytics, tracking code
+Tags: proxy tracker for matomo, matomo, piwik, analytics, tracking code
 Requires at least: 3.0.1
 Tested up to: 5.4.2
 Requires PHP: 5.6.0
@@ -9,11 +9,11 @@ Stable tag: 1.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Mytomo tracker (formerly Matomo tracker) adds matomo (formerly piwik) tracking code to your website while hiding your mytomo installation url
+Proxy tracker for matomo (formerly Matomo tracker) adds matomo (formerly piwik) tracking code to your website while hiding your mytomo installation url
 
 == Description ==
 
-Mytomo tracker adds matomo (formerly piwik) tracking code to your website while hiding your matomo installation url using the proxy mode (How do I setup Matomo to track multiple websites without revealing the Matomo server URL footprint which appears in the Javascript code in all websites? https://matomo.org/faq/how-to/faq_132/). You can choose between php and javascript tracking.
+Proxy tracker for matomo adds matomo (formerly piwik) tracking code to your website while hiding your matomo installation url using the proxy mode (How do I setup Matomo to track multiple websites without revealing the Matomo server URL footprint which appears in the Javascript code in all websites? https://matomo.org/faq/how-to/faq_132/). You can choose between php and javascript tracking.
 Javascript tracking returns more details about your visitors while php tracking is more robust.
 
 You first need to :
@@ -30,14 +30,14 @@ Features :
 
 == Installation ==
 
-* Upload `mytomo-tracker` to the `/wp-content/plugins/` directory
+* Upload `proxy-tracker-for-matomo` to the `/wp-content/plugins/` directory
 * Activate the plugin through the 'Plugins' menu in WordPress
-* Visit Settings >> Mytomo Tracker to add you matomo url and id 
+* Visit Settings >> Proxy Tracker For Matomo to add you matomo url and id 
 * Check your matomo installation to track your pageviews
 
 == Screenshot ==
 
-1. Mytomo Tracker admin page
+1. Proxy Tracker For Matomo admin page
 
 == Changelog ==
 
@@ -76,4 +76,4 @@ Features :
 * Fixed tracking issue for subfolder install
 
 = 1.5.0 =
-* Renamed Matomoto Tracker to Mytomo tracker
+* Renamed Matomo Tracker to Proxy Tracker For Matomo

@@ -1,6 +1,6 @@
 <?php
 
-namespace Mytomo_Tracker\Inc\Core;
+namespace Proxy_Tracker_For_Matomo\Inc\Core;
 
 /**
  * Fired during plugin activation

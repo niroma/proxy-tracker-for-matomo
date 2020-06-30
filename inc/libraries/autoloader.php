@@ -3,7 +3,7 @@
  * Dynamically loads the class attempting to be instantiated elsewhere in the
  * plugin by looking at the $class_name parameter being passed as an argument.
  *
- * The argument should be in the form: Mytomo_Tracker\Namespace. The
+ * The argument should be in the form: Proxy_Tracker_For_Matomo\Namespace. The
  * function will then break the fully-qualified class name into its pieces and
  * will then build a file to the path based on the namespace.
  *
@@ -22,7 +22,7 @@
 spl_autoload_register( function( $class_name ) {
 
 	// If the specified $class_name does not include our namespace, duck out.
-	if ( false === strpos( $class_name, 'Mytomo_Tracker' ) ) {
+	if ( false === strpos( $class_name, 'Proxy_Tracker_For_Matomo' ) ) {
 		return;
 	}
 

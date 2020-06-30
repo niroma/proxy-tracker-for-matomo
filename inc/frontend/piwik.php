@@ -25,18 +25,18 @@
 	}
 	require_once($root.'/wp-load.php'); 
 	include_once($root.'/wp-admin/includes/plugin.php' );
-	if ( is_plugin_active( 'mytomo-tracker/mytomo-tracker.php' ) && !empty(get_option( 'mytomo-tracker-url' )) && !empty(get_option( 'mytomo-tracker-tracking-id' )) && !empty(get_option( 'mytomo-tracker-token' )) ) {
+	if ( is_plugin_active( 'proxy-tracker-for-matomo/proxy-tracker-for-matomo.php' ) && !empty(get_option( 'proxy-tracker-for-matomo-url' )) && !empty(get_option( 'proxy-tracker-for-matomo-tracking-id' )) && !empty(get_option( 'proxy-tracker-for-matomo-token' )) ) {
 		// Edit the line below, and replace http://your-piwik-domain.example.org/piwik/
 		// with your Piwik URL ending with a slash.
 		// This URL will never be revealed to visitors or search engines.
 		if (! isset($PIWIK_URL)) {
-			$PIWIK_URL = trailingslashit( get_option( 'mytomo-tracker-url' ) );
+			$PIWIK_URL = trailingslashit( get_option( 'proxy-tracker-for-matomo-url' ) );
 		}
 
 		// Edit the line below, and replace xyz by the token_auth for the user "UserTrackingAPI"
 		// which you created when you followed instructions above.
 		if (! isset($TOKEN_AUTH)) {
-			$TOKEN_AUTH = get_option( 'mytomo-tracker-token' );
+			$TOKEN_AUTH = get_option( 'proxy-tracker-for-matomo-token' );
 		}
 
 		// Maximum time, in seconds, to wait for the Piwik server to return the 1*1 GIF

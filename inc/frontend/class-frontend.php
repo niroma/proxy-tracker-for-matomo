@@ -1,6 +1,6 @@
 <?php
 
-namespace Mytomo_Tracker\Inc\Frontend;
+namespace Proxy_Tracker_For_Matomo\Inc\Frontend;
 use PiwikTracker as PiwikTracker;
 
 /**
@@ -82,7 +82,7 @@ class Frontend {
 		 * class.
 		 */
 /*
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/mytomo-tracker-frontend.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/proxy-tracker-for-matomo-frontend.css', array(), $this->version, 'all' );
 
 	}
 
@@ -105,7 +105,7 @@ class Frontend {
 		 * class.
 		 */
 /*
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/mytomo-tracker-frontend.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/proxy-tracker-for-matomo-frontend.js', array( 'jquery' ), $this->version, false );
 
 	}
 	*/
@@ -141,7 +141,7 @@ class Frontend {
 	
 	public function disallow_javascript_tracking( $output, $public ) {
 		if ( '1' === $public ) {
-			$output .= "Disallow: /wp-content/plugins/mytomo-tracker/inc/frontend/track.js\n";
+			$output .= "Disallow: /wp-content/plugins/proxy-tracker-for-matomo/inc/frontend/track.js\n";
 		}
 			return $output;
 	}
